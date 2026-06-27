@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0a0f;
+    --foreground: #f0f0f5;
+    --surface: #13131a;
+    --surface-elevated: #1a1a24;
+    --border: #2a2a38;
+    --border-subtle: #1e1e2a;
+    --muted: #6b6b80;
+    --accent-work: #ef4444;
+    --accent-short: #22c55e;
+    --accent-long: #3b82f6;
+    --accent-work-dim: rgba(239, 68, 68, 0.15);
+    --accent-short-dim: rgba(34, 197, 94, 0.15);
+    --accent-long-dim: rgba(59, 130, 246, 0.15);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    min-height: 100dvh;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-muted {
+    color: var(--muted);
+  }
+
+  .bg-surface {
+    background-color: var(--surface);
+  }
+
+  .bg-surface-elevated {
+    background-color: var(--surface-elevated);
+  }
+
+  .border-subtle {
+    border-color: var(--border-subtle);
+  }
+
+  .timer-glow-work {
+    box-shadow: 0 0 60px rgba(239, 68, 68, 0.2), 0 0 120px rgba(239, 68, 68, 0.05);
+  }
+
+  .timer-glow-short {
+    box-shadow: 0 0 60px rgba(34, 197, 94, 0.2), 0 0 120px rgba(34, 197, 94, 0.05);
+  }
+
+  .timer-glow-long {
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.2), 0 0 120px rgba(59, 130, 246, 0.05);
+  }
 }
